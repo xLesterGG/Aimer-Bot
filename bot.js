@@ -11,6 +11,17 @@ var franc = require('franc');
 var classifier = bayes();
 var Twitter = new twit(config);
 
+
+var http = require('http');
+
+//create a server object:
+http.createServer(function (req, res) {
+  res.write('Hello World!'); //write a response to the client
+  res.end(); //end the response
+}).listen(process.env.PORT || 5000) //the server object listens on port 5000
+
+
+
 var retweet = (retweetId,content)=>{
 
     Twitter.post('statuses/retweet/:id',{id:retweetId},(err,res)=>{
