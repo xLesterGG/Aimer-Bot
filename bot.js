@@ -12,13 +12,13 @@ var classifier = bayes();
 var Twitter = new twit(config);
 
 
-var http = require('http');
-
-//create a server object:
-http.createServer(function (req, res) {
-  res.write('Hello World!'); //write a response to the client
-  res.end(); //end the response
-}).listen(process.env.PORT || 5000) //the server object listens on port 5000
+// var http = require('http');
+//
+// //create a server object:
+// http.createServer(function (req, res) {
+//   res.write('Hello World!'); //write a response to the client
+//   res.end(); //end the response
+// }).listen(process.env.PORT || 5000) //the server object listens on port 5000
 
 
 
@@ -68,6 +68,12 @@ var search = ()=>{
                 if(franc(tweets[x].content)=="fra"){
                     console.log(tweets[x].content +"is fr,negative and will be used to train, and update model \n");
                     classifier.learn(tweets[x].content, 'negative');
+
+                    fs.writeFile("naive.txt",classifier.toJson(), function(err) {
+                        if(err) {
+                            return console.log(err);
+                        }
+                    });
                 }else{
                     if(classifier.categorize(tweets[x].content) == "positive"){
 
@@ -86,6 +92,12 @@ var search = ()=>{
                         else{
                             console.log(tweets[x].id+ " - " + tweets[x].content + "is negative and will be used to train, and update model \n");
                             classifier.learn(tweets[x].content, 'negative');
+
+                            fs.writeFile("naive.txt",classifier.toJson(), function(err) {
+                                if(err) {
+                                    return console.log(err);
+                                }
+                            });
                         }
 
                     }
