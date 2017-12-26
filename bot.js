@@ -67,13 +67,13 @@ var search = ()=>{
                 // console.log(classifier.categorize(tweets[x].content) +"   "+ tweets[x].content );
                 if(franc(tweets[x].content)=="fra"){
                     console.log(tweets[x].content +"is fr,negative and will be used to train, and update model \n");
-                    classifier.learn(tweets[x].content, 'negative');
-
-                    fs.writeFile("naive.txt",classifier.toJson(), function(err) {
-                        if(err) {
-                            return console.log(err);
-                        }
-                    });
+                    // classifier.learn(tweets[x].content, 'negative');
+                    //
+                    // fs.writeFile("naive.txt",classifier.toJson(), function(err) {
+                    //     if(err) {
+                    //         return console.log(err);
+                    //     }
+                    // });
                 }else{
                     if(classifier.categorize(tweets[x].content) == "positive"){
 
@@ -91,13 +91,13 @@ var search = ()=>{
                         }
                         else{
                             console.log(tweets[x].id+ " - " + tweets[x].content + "is negative and will be used to train, and update model \n");
-                            classifier.learn(tweets[x].content, 'negative');
-
-                            fs.writeFile("naive.txt",classifier.toJson(), function(err) {
-                                if(err) {
-                                    return console.log(err);
-                                }
-                            });
+                            // classifier.learn(tweets[x].content, 'negative');
+                            //
+                            // fs.writeFile("naive.txt",classifier.toJson(), function(err) {
+                            //     if(err) {
+                            //         return console.log(err);
+                            //     }
+                            // });
                         }
 
                     }
