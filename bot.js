@@ -101,7 +101,7 @@ var search = ()=>{
                         }
                         else{
                             console.log(tweets[x].id+ " - " + tweets[x].content + "is negative and will be used to train, and update model \n");
-                            // classifier.learn(tweets[x].content, 'negative');
+                            classifier.learn(tweets[x].content, 'negative');
                             //
                             // fs.writeFile("naive.txt",classifier.toJson(), function(err) {
                             //     if(err) {
