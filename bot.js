@@ -78,16 +78,26 @@ var search = ()=>{
                     if(classifier.categorize(tweets[x].content) == "positive"){
 
                         if(tweets[x].content.toLowerCase().includes("aimer")||tweets[x].content.includes("エメ")){
-                            console.log(tweets[x].id+ " - " + tweets[x].content + "is positive and will be used to train, and update model \n");
 
-                            classifier.learn(tweets[x].content, 'positive');
-                            fs.writeFile("naive.txt",classifier.toJson(), function(err) {
-                                if(err) {
-                                    return console.log(err);
-                                }
-                            });
+                            if(tweets[x].content.toLowerCase().includes("hair") && tweets[x].content.toLowerCase().includes("studio")){
+                                console.log(tweets[x].id+ " - " + tweets[x].content + "is negative, updating model \n");
+                                classifier.learn(tweets[x].content, 'negative');
 
-                            retweet(tweets[x].id,tweets[x].content);
+                            }else{
+                                console.log(tweets[x].id+ " - " + tweets[x].content + "is positive and will be used to train, and update model \n");
+
+                                classifier.learn(tweets[x].content, 'positive');
+                                fs.writeFile("naive.txt",classifier.toJson(), function(err) {
+                                    if(err) {
+                                        return console.log(err);
+                                    }
+                                });
+
+                                retweet(tweets[x].id,tweets[x].content);
+                            }
+
+
+
                         }
                         else{
                             console.log(tweets[x].id+ " - " + tweets[x].content + "is negative and will be used to train, and update model \n");
