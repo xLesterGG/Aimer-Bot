@@ -79,7 +79,7 @@ var search = ()=>{
 
                         if(tweets[x].content.toLowerCase().includes("aimer")||tweets[x].content.includes("エメ")){
 
-                            if(tweets[x].content.toLowerCase().includes("hair") && tweets[x].content.toLowerCase().includes("studio")){
+                            if(tweets[x].content.toLowerCase().includes("hair") && tweets[x].content.toLowerCase().includes("salon")){
                                 console.log(tweets[x].id+ " - " + tweets[x].content + "is negative, updating model \n");
                                 classifier.learn(tweets[x].content, 'negative');
 
