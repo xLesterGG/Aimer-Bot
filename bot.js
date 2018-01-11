@@ -161,4 +161,4 @@ search();
 
 // setInterval(search, 30000);
 
-setInterval(search, 60000);
+setInterval(search, 120000);
